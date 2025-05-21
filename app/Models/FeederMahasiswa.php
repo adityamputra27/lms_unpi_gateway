@@ -10,6 +10,7 @@ class FeederMahasiswa extends Model
     use HasFactory;
 
     protected $table = 'feeder_mahasiswa';
+    protected $primaryKey = 'mahasiswa_id';
     protected $fillable = [
         'mahasiswa_id',
         'kode_mahasiswa',
