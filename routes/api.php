@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::put('/{user}/profile-synchronize', [ProfileController::class, 'update']);
 Route::get('/courses', [MatkulController::class, 'options']); // matkul options
+Route::get('/religions', [ProfileController::class, 'religions']); // matkul options
 
 Route::prefix('/mahasiswa')->group(function () {
     Route::post('/me', [MahasiswaAuthController::class, 'me']);
