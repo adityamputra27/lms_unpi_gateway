@@ -32,6 +32,10 @@ class ProfileController extends Controller
                 'fakultas_id',
             ]);
 
+            if ($request->has('user_id')) {
+                $payload['updated_id'] = $request->input('user_id');
+            }
+
             $rules = [
                 'kode_mahasiswa' => 'required|string|max:100',
                 'nama_mahasiswa' => 'required|string|max:100',
