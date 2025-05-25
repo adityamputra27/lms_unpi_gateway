@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class MatkulController extends Controller
 {
-    public function options(Request $request)
+    public function list(Request $request)
     {
         $query = FeederMatakuliah::query();
 
@@ -23,6 +23,15 @@ class MatkulController extends Controller
         }
         if ($request->has('end_date')) {
             $query->whereDate('tanggal_selesai_efektif', '<=', $request->input('end_date'));
+        }
+        if ($request->filled('matkul_id')) {
+            $matkulIds = $request->input('matkul_id');
+
+            if (is_string($matkulIds)) {
+                $matkulIds = explode(',', $matkulIds);
+            }
+
+            $query->whereIn('matkul_id', (array) $matkulIds);
         }
 
         return response()->json($query->get(), 200);
