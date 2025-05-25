@@ -92,13 +92,4 @@ class ProfileController extends Controller
 
         return response()->json(['message' => 'Profil berhasil diperbarui']);
     }
-
-    public function religions(Request $request)
-    {
-        $query = RefAgama::query();
-        if ($request->has('status')) {
-            $query->where('status', $request->input('status'));
-        }
-        return response()->json($query->get(), 200);
-    }
 }

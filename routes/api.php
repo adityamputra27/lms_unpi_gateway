@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\Mahasiswa\AuthController as MahasiswaAuthController;
 use App\Http\Controllers\API\Dosen\AuthController as DosenAuthController;
+use App\Http\Controllers\API\MasterDataController;
 use App\Http\Controllers\API\MatkulController;
 use App\Http\Controllers\API\ProfileController;
 use Illuminate\Http\Request;
@@ -24,7 +25,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::put('/{user}/profile-synchronize', [ProfileController::class, 'update']);
 Route::get('/courses', [MatkulController::class, 'options']); // matkul options
-Route::get('/religions', [ProfileController::class, 'religions']); // matkul options
+Route::get('/religions', [MasterDataController::class, 'religions']); // matkul options
+
+// semester data
+Route::get('/semesters', [MasterDataController::class, 'getAllSemester']);
+Route::get('/semesters/{id}', [MasterDataController::class, 'getSemesterById']);
 
 Route::prefix('/mahasiswa')->group(function () {
     Route::post('/me', [MahasiswaAuthController::class, 'me']);
